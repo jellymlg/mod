@@ -18,7 +18,7 @@ public class Main implements ModInitializer {
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(new Identifier("mod:items")).icon(() -> new ItemStack(Items.DIAMOND_HOE)).build();
 	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.BAMBOO).velocityMultiplier(3));
 	@Override
-	public void onInitialize() {//hello
+	public void onInitialize() {
 		Registry.register(Registry.BLOCK, new Identifier("mod:xd"), XD);
 		Registry.register(Registry.ITEM, new Identifier("mod:xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
 	}
