@@ -21,5 +21,6 @@ public class Main implements ModInitializer {
 	public void onInitialize() {
 		Registry.register(Registry.BLOCK, new Identifier("mod:xd"), XD);
 		Registry.register(Registry.ITEM, new Identifier("mod:xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
+		//e
 	}
 }
