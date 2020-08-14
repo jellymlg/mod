@@ -22,7 +22,6 @@ public class Scythe extends HoeItem {
         MinecraftClient instance = MinecraftClient.getInstance();
         String str = world.getBlockState(new BlockPos(instance.crosshairTarget.getPos())).getBlock().getName().getString();
         MinecraftClient.getInstance().getServer().getPlayerManager().broadcastChatMessage(new LiteralText(str), MessageType.CHAT, playerEntity.getUuid());
-        instance.close();
         return new TypedActionResult<>(ActionResult.SUCCESS, playerEntity.getStackInHand(hand));
     }
 }
