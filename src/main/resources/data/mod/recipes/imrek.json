@@ -7,7 +7,7 @@
     ],
     "key": {
       "N": {
-        "tag": "minecraft:netherite_block"
+        "item": "minecraft:netherite_block"
       },
       "B": {
         "item": "minecraft:beacon"
