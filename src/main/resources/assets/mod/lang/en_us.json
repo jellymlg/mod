@@ -1,4 +1,6 @@
 {
+    "itemGroup.mod.items": "Mod",
     "block.mod.xd": "XD",
-    "itemGroup.mod.items": "Mod"
+    "item.mod.imrek": "Imrek"
+    
 }
