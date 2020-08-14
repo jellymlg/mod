@@ -15,13 +15,16 @@ import net.minecraft.util.registry.Registry;
 
 public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
-	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(new Identifier("mod:items")).icon(() -> new ItemStack(IMREK)).build();
+	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
 	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.BAMBOO).velocityMultiplier(3));
 	@Override
 	public void onInitialize() {
 		IMREK = new Item(new Item.Settings().group(ITEMS));
-		Registry.register(Registry.ITEM, new Identifier("mod:imrek"), IMREK);
-		Registry.register(Registry.BLOCK, new Identifier("mod:xd"), XD);
-		Registry.register(Registry.ITEM, new Identifier("mod:xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
+		Registry.register(Registry.ITEM, ID("imrek"), IMREK);
+		Registry.register(Registry.BLOCK, ID("xd"), XD);
+		Registry.register(Registry.ITEM, ID("xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
+	}
+	private static Identifier ID(String itemName) {
+		return new Identifier("mod", itemName);
 	}
 }
