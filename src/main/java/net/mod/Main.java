@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class Main implements ModInitializer {
+	public static final Item IMREK = new Item(new Item.Settings());
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(new Identifier("mod:items")).icon(() -> new ItemStack(Items.DIAMOND_HOE)).build();
 	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.BAMBOO).velocityMultiplier(3));
 	@Override
