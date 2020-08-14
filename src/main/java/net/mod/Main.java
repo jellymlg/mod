@@ -13,7 +13,6 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.apache.logging.log4j.util.LoaderUtil;
 
 public class Main implements ModInitializer {
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(new Identifier("mod:items")).icon(() -> new ItemStack(Items.DIAMOND_HOE)).build();
@@ -22,13 +21,5 @@ public class Main implements ModInitializer {
 	public void onInitialize() {
 		Registry.register(Registry.BLOCK, new Identifier("mod:xd"), XD);
 		Registry.register(Registry.ITEM, new Identifier("mod:xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
-		System.out.println(isClassAvailable("javax.servlet.Servlet"));
 	}
-	private static boolean isClassAvailable(final String className) {
-        try {
-            return LoaderUtil.loadClass(className) != null;
-        } catch (final Throwable e) {
-            return false;
-        }
-    }
 }
