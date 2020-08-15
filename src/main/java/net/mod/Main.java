@@ -20,6 +20,7 @@ public class Main implements ModInitializer {
 	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(3));
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(100).group(ITEMS));
 	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT));
+	public static final Item CROPLOOT = new Item(new Item.Settings().group(ITEMS));
 	@Override
 	public void onInitialize() {
 		IMREK = new Item(new Item.Settings().group(ITEMS));
@@ -29,6 +30,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.ITEM, ID("scythe"), SCYTHE);
 		Registry.register(Registry.BLOCK, ID("crop"), CROP);
 		Registry.register(Registry.ITEM, ID("crop"), new BlockItem(CROP, new Item.Settings().group(ITEMS)));
+		Registry.register(Registry.ITEM, ID("croploot"), CROPLOOT);
 	}
 	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);
