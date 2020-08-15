@@ -30,7 +30,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("crop"), CROP);
 		Registry.register(Registry.ITEM, ID("crop"), new BlockItem(CROP, new Item.Settings().group(ITEMS)));
 	}
-	private static Identifier ID(String itemName) {
+	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);
 	}
 }
