@@ -6,12 +6,16 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.MessageType;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 
 public class Main implements ModInitializer {
@@ -34,5 +38,8 @@ public class Main implements ModInitializer {
 	}
 	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);
+	}
+	public static void send(String msg) {
+		MinecraftClient.getInstance().getServer().getPlayerManager().broadcastChatMessage(new LiteralText(msg), MessageType.CHAT, MathHelper.randomUuid());
 	}
 }
