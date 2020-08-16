@@ -10,6 +10,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
@@ -35,4 +36,8 @@ public class Crop extends CropBlock {
         }
         return ActionResult.SUCCESS;
     }
+    @Override
+    protected int getGrowthAmount(World world) {
+        return MathHelper.nextInt(world.random, 1, 2);
+     }
 }

@@ -2,5 +2,6 @@
     "itemGroup.mod.items": "Mod",
     "block.mod.xd": "A Block Of Solid But Slippery Lube",
     "item.mod.imrek": "Imrek",
-    "item.mod.scythe": "Scythe"
+    "item.mod.scythe": "Scythe",
+    "block.mod.cropblock": "Crop"
 }
