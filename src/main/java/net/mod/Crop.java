@@ -25,6 +25,7 @@ public class Crop extends CropBlock {
             if(!player.abilities.creativeMode) {
                 player.getMainHandStack().decrement(1);
             }
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }

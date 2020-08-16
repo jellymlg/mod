@@ -26,6 +26,7 @@ public class Scythe extends Item {
                 context.getPlayer().inventory.removeOne(tool);
                 context.getPlayer().playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
             }
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }
