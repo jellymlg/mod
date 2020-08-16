@@ -44,7 +44,7 @@ public class Main implements ModInitializer {
 		ClientPickBlockApplyCallback.EVENT.register(new ClientPickBlockApplyCallback(){
 			@Override
 			public ItemStack pick(PlayerEntity player, HitResult result, ItemStack stack) {
-				return getBlockFromHit(player.world, result).getTranslationKey().contains("cropblock") ? new ItemStack(CROPLOOT, 1) : stack;
+				return getBlockFromHit(player.world, result).is(CROP) ? new ItemStack(CROPLOOT, 1) : stack;
 			}
 		});
 	}
