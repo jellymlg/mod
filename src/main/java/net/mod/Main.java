@@ -29,7 +29,7 @@ public class Main implements ModInitializer {
 	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(3));
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(100).group(ITEMS));
 	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT));
-	public static final Item CROPLOOT = new Item(new Item.Settings().group(ITEMS));
+	public static final Item CROPLOOT = new BlockItem(CROP, new Item.Settings().group(ITEMS));
 	@Override
 	public void onInitialize() {
 		IMREK = new Item(new Item.Settings().group(ITEMS));
@@ -38,11 +38,11 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.ITEM, ID("xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
 		Registry.register(Registry.ITEM, ID("scythe"), SCYTHE);
 		Registry.register(Registry.BLOCK, ID("cropblock"), CROP);
-		Registry.register(Registry.ITEM, ID("crop"), new BlockItem(CROP, new Item.Settings().group(ITEMS)));
+		Registry.register(Registry.ITEM, ID("crop"), CROPLOOT);
 		ClientPickBlockApplyCallback.EVENT.register(new ClientPickBlockApplyCallback(){
 			@Override
 			public ItemStack pick(PlayerEntity player, HitResult result, ItemStack stack) {
-				return getBlockFromHit(player.world, result).getTranslationKey().contains("cropblock") ? new ItemStack(Registry.ITEM.get(ID("crop")), 1) : stack;
+				return getBlockFromHit(player.world, result).getTranslationKey().contains("cropblock") ? new ItemStack(CROPLOOT, 1) : stack;
 			}
 		});
 	}
