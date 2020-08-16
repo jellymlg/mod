@@ -35,4 +35,8 @@ public class Crop extends CropBlock {
         }
         return ActionResult.SUCCESS;
     }
+    @Override
+    protected int getGrowthAmount(World world) {
+        return (int) (Math.random() * 2) + 1;
+     }
 }
