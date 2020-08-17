@@ -26,17 +26,17 @@ import net.minecraft.world.World;
 public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
-	public static final Block XD = new Block(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(3));
+	public static final Block LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
 	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT));
 	public static Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
 	public static final Item CROPLOOT = new BlockItem(CROP, new Item.Settings().group(ITEMS));
 	@Override
 	public void onInitialize() {
-		IMREK = new Item(new Item.Settings().group(ITEMS));
+		IMREK = new Imrek(new Item.Settings().group(ITEMS));
 		Registry.register(Registry.ITEM, ID("imrek"), IMREK);
-		Registry.register(Registry.BLOCK, ID("xd"), XD);
-		Registry.register(Registry.ITEM, ID("xd"), new BlockItem(XD, new Item.Settings().group(ITEMS)));
+		Registry.register(Registry.BLOCK, ID("lube"), LUBE);
+		Registry.register(Registry.ITEM, ID("lube"), new BlockItem(LUBE, new Item.Settings().group(ITEMS)));
 		Registry.register(Registry.ITEM, ID("scythe"), SCYTHE);
 		Registry.register(Registry.BLOCK, ID("cropblock"), CROP);
 		Registry.register(Registry.ITEM, ID("crop"), CROPLOOT);
