@@ -62,6 +62,6 @@ public class Main implements ModInitializer {
 		}
 	}
 	public static HitResult rayTrace(double maxDistance) {
-		return MinecraftClient.getInstance().getCameraEntity().rayTrace(6.0D, 0.0F, false);
+		return MinecraftClient.getInstance().getCameraEntity().rayTrace(maxDistance, 0.0F, false);
 	}
 }
