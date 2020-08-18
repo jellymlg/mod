@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-      "all": "mod:block/crop_1"
-    }
+  "parent": "block/crop",
+  "textures": {
+    "crop": "mod:block/crop_1"
+  }
 }
