@@ -3,7 +3,10 @@ package net.mod;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -11,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class Crop extends CropBlock {
+    public static final IntProperty AGE;
     public Crop(Settings settings) {
         super(settings);
     }
@@ -32,5 +36,12 @@ public class Crop extends CropBlock {
     @Override
     protected int getGrowthAmount(World world) {
         return (int) (Math.random() * getMaxAge()) + 1;
-     }
+    }
+    @Override
+    protected ItemConvertible getSeedsItem() {
+        return Main.CROPLOOT;
+    }
+    static {
+        AGE = Properties.AGE_2;
+    }
 }

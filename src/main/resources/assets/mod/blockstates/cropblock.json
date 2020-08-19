@@ -2,6 +2,11 @@
     "variants": {
         "age=0": {"model": "mod:block/crop_0"},
         "age=1": {"model": "mod:block/crop_1"},
-        "age=2": {"model": "mod:block/crop_2"}
+        "age=2": {"model": "mod:block/crop_2"},
+        "age=3": {"model": "block/air"},
+        "age=4": {"model": "block/air"},
+        "age=5": {"model": "block/air"},
+        "age=6": {"model": "block/air"},
+        "age=7": {"model": "block/air"}
     }
 }
