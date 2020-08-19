@@ -31,6 +31,6 @@ public class Crop extends CropBlock {
     }
     @Override
     protected int getGrowthAmount(World world) {
-        return (int) (Math.random() * 2) + 1;
+        return (int) (Math.random() * getMaxAge()) + 1;
      }
 }
