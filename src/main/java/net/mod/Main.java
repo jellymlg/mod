@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.MessageType;
+import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -52,7 +53,7 @@ public class Main implements ModInitializer {
 		return new Identifier("mod", itemName);
 	}
 	public static void send(String msg) {
-		MinecraftClient.getInstance().getServer().getPlayerManager().broadcastChatMessage(new LiteralText(msg), MessageType.CHAT, MathHelper.randomUuid());
+		MinecraftClient.getInstance().getServer().getPlayerManager().sendToAll(new GameMessageS2CPacket(new LiteralText(msg), MessageType.CHAT, MathHelper.randomUuid()));
 	}
 	public static Block getBlockFromHit(World world, HitResult hit) {
 		if(hit.getType() == HitResult.Type.BLOCK) {

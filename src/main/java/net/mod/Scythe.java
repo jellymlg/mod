@@ -16,7 +16,7 @@ public class Scythe extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
         ItemStack tool = context.getStack();
         BlockState state = context.getWorld().getBlockState(context.getBlockPos());
-        if(state.getBlock().is(Main.CROP) && ((Crop) state.getBlock()).isMature(state)) {
+        if(state.getBlock().is(Main.CROP) && ((Crop) state.getBlock()).isMature(state)) {Main.send("bruh");
             Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Main.WHEATSTICK, 2));
             Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Main.CROPLOOT, 1));
             context.getWorld().setBlockState(context.getBlockPos(), ((Crop) state.getBlock()).withAge(0), 2);
