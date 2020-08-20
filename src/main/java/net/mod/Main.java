@@ -27,7 +27,7 @@ public class Main implements ModInitializer {
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
 	public static final Block LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
-	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT).nonOpaque());
+	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT));
 	public static Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
 	public static final Item CROPLOOT = new BlockItem(CROP, new Item.Settings().group(ITEMS));
 	@Override

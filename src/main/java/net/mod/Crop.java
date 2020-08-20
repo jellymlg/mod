@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class Crop extends CropBlock {
-    public static final IntProperty AGE = Properties.AGE_2;
+    public static final IntProperty AGE = Properties.AGE_7;
     public Crop(Settings settings) {
         super(settings);
     }
