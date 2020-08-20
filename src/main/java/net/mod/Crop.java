@@ -1,10 +1,13 @@
 package net.mod;
 
+import java.util.Comparator;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.state.StateManager.Builder;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
@@ -14,13 +17,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class Crop extends CropBlock {
-    public static final IntProperty AGE;
+    public static final IntProperty AGE = Properties.AGE_2;
     public Crop(Settings settings) {
         super(settings);
     }
     @Override
     public int getMaxAge() {
-        return 2;
+        return AGE.getValues().stream().max(Comparator.naturalOrder()).get().intValue();
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -41,7 +44,12 @@ public class Crop extends CropBlock {
     protected ItemConvertible getSeedsItem() {
         return Main.CROPLOOT;
     }
-    static {
-        AGE = Properties.AGE_2;
+    @Override
+    protected void appendProperties(Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
+    @Override
+    public IntProperty getAgeProperty() {
+        return AGE;
     }
 }
