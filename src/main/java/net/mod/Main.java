@@ -1,12 +1,14 @@
 package net.mod;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -40,6 +42,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("cropblock"), CROP);
 		Registry.register(Registry.ITEM, ID("crop"), CROPLOOT);
 		Registry.register(Registry.ITEM, ID("wheatstick"), WHEATSTICK);
+		BlockRenderLayerMap.INSTANCE.putBlock(CROP, RenderLayer.getCutout());
 	}
 	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);
