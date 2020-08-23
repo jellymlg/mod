@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -29,7 +30,10 @@ public class Main implements ModInitializer {
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
 	public static final Block BARLEY = new Barley();
 	public static final Item BARLEY_SEED = new BlockItem(BARLEY, new Item.Settings().group(ITEMS));
-	public static Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
+	public static final Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
+	public static final Block COUNTERTOP = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
+	public static final Item COUNTERTOP_ITEM = new BlockItem(COUNTERTOP, new Item.Settings().group(ITEMS));
+	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY;
 	@Override
 	public void onInitialize() {
 		IMREK = new Imrek(new Item.Settings().group(ITEMS));
@@ -40,6 +44,9 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("barley"), BARLEY);
 		Registry.register(Registry.ITEM, ID("barley_seed"), BARLEY_SEED);
 		Registry.register(Registry.ITEM, ID("wheatstick"), WHEATSTICK);
+		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
+		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
+		COUNTERTOP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null));
 	}
 	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);
