@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "mod:block/crop_1"
+    "crop": "mod:block/barley_0"
   }
 }

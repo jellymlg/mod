@@ -1,14 +1,12 @@
 package net.mod;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -29,9 +27,9 @@ public class Main implements ModInitializer {
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
 	public static final Block LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
 	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
-	public static final Block CROP = new Crop(FabricBlockSettings.copy(Blocks.WHEAT));
+	public static final Block BARLEY = new Barley();
+	public static final Item BARLEY_SEED = new BlockItem(BARLEY, new Item.Settings().group(ITEMS));
 	public static Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
-	public static final Item CROPLOOT = new BlockItem(CROP, new Item.Settings().group(ITEMS));
 	@Override
 	public void onInitialize() {
 		IMREK = new Imrek(new Item.Settings().group(ITEMS));
@@ -39,10 +37,9 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("lube"), LUBE);
 		Registry.register(Registry.ITEM, ID("lube"), new BlockItem(LUBE, new Item.Settings().group(ITEMS)));
 		Registry.register(Registry.ITEM, ID("scythe"), SCYTHE);
-		Registry.register(Registry.BLOCK, ID("cropblock"), CROP);
-		Registry.register(Registry.ITEM, ID("crop"), CROPLOOT);
+		Registry.register(Registry.BLOCK, ID("barley"), BARLEY);
+		Registry.register(Registry.ITEM, ID("barley_seed"), BARLEY_SEED);
 		Registry.register(Registry.ITEM, ID("wheatstick"), WHEATSTICK);
-		BlockRenderLayerMap.INSTANCE.putBlock(CROP, RenderLayer.getCutout());
 	}
 	public static Identifier ID(String itemName) {
 		return new Identifier("mod", itemName);

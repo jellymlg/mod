@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "age=0": {"model": "mod:block/barley_0"},
+        "age=1": {"model": "mod:block/barley_1"},
+        "age=2": {"model": "mod:block/barley_2"},
+        "age=3": {"model": "mod:block/barley_3"},
+        "age=4": {"model": "mod:block/barley_4"},
+        "age=5": {"model": "mod:block/barley_5"},
+        "age=6": {"model": "mod:block/barley_6"}
+    }
+}
