@@ -1,9 +1,8 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/texture",
-		"1": "block/texture",
-		"particle": "block/texture"
+		"0": "mod:block/texture_0",
+		"1": "mod:block/texture_1",
+		"particle": "mod:block/texture_0"
 	},
 	"elements": [
 		{
@@ -109,5 +108,27 @@
 			"origin": [8, 8, 8],
 			"children": [5, 6]
 		}
-	]
+	],
+	"display": {
+		"firstperson_righthand": {
+			"rotation": [0, 0, 0],
+            "translation": [0, 0, 0],
+            "scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 0, 0],
+            "translation": [0, 0, 0],
+            "scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 0, 0],
+            "translation": [0, 0, 0],
+            "scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_righthand": {
+			"rotation": [0, 0, 0],
+            "translation": [0, 0, 0],
+            "scale": [0.5, 0.5, 0.5]
+		}
+	}
 }

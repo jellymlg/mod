@@ -1,13 +1,16 @@
 package net.mod;
 
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -19,7 +22,8 @@ import net.minecraft.world.World;
 
 public class Countertop extends Block implements BlockEntityProvider {
     public Countertop() {
-        super(FabricBlockSettings.copyOf(Blocks.STONE));
+        super(FabricBlockSettings.copyOf(Blocks.GLASS).sounds(BlockSoundGroup.STONE).requiresTool().strength(1.5F, 6.0F));
+        BlockRenderLayerMap.INSTANCE.putBlock(this, RenderLayer.getTranslucent());
     }
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
