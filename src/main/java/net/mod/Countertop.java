@@ -32,7 +32,6 @@ public class Countertop extends Block implements BlockEntityProvider {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         CountertopEntity block = (CountertopEntity) world.getBlockEntity(pos);
-        System.out.println("start: " + block.getStack(0));
         if(block.isEmpty()) {
             if(!player.getStackInHand(hand).isEmpty()) {
                 block.setStack(0, player.getStackInHand(hand).copy());
@@ -41,15 +40,15 @@ public class Countertop extends Block implements BlockEntityProvider {
                 if(!player.isCreative()) {
                     player.getStackInHand(hand).decrement(1);
                 }
-                player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0f, 1.0f);System.out.println("finish: " + block.getStack(0));
+                player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0f, 1.0f);
                 return ActionResult.SUCCESS;
             }
         }else {
             player.giveItemStack(block.getStack(0).copy());
             block.setStack(0, ItemStack.EMPTY);
-            block.markDirty();System.out.println("finish: " + block.getStack(0));
+            block.markDirty();
             return ActionResult.SUCCESS;
-        }System.out.println("finish: " + block.getStack(0));
+        }
         return ActionResult.PASS;
     }
     @Override
