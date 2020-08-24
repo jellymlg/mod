@@ -31,7 +31,7 @@ public class Main implements ModInitializer {
 	public static final Block BARLEY = new Barley();
 	public static final Item BARLEY_SEED = new BlockItem(BARLEY, new Item.Settings().group(ITEMS));
 	public static final Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
-	public static final Block COUNTERTOP = new Block(FabricBlockSettings.copyOf(Blocks.STONE));
+	public static final Block COUNTERTOP = new Countertop();
 	public static final Item COUNTERTOP_ITEM = new BlockItem(COUNTERTOP, new Item.Settings().group(ITEMS));
 	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY;
 	@Override

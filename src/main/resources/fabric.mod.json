@@ -21,6 +21,11 @@
   "entrypoints": {
     "main": [
       "net.mod.Main"
+    ],
+    "client": [
+      {
+        "value": "net.mod.MainClient"
+      }
     ]
   },
   "mixins": [],

@@ -4,7 +4,7 @@ import net.minecraft.block.SlimeBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.BlockView;
 
-public class Lube extends SlimeBlock{
+public class Lube extends SlimeBlock {
     public Lube(Settings settings) {
         super(settings);
     }
