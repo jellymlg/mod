@@ -44,7 +44,9 @@ public class Countertop extends Block implements BlockEntityProvider {
                 return ActionResult.SUCCESS;
             }
         }else {
-            player.giveItemStack(block.getStack(0).copy());
+            if(!player.isCreative()) {
+                player.giveItemStack(block.getStack(0).copy());
+            }
             block.setStack(0, ItemStack.EMPTY);
             block.markDirty();
             return ActionResult.SUCCESS;
