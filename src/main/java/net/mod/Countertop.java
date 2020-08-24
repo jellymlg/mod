@@ -28,29 +28,31 @@ public class Countertop extends Block implements BlockEntityProvider {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         CountertopEntity block = (CountertopEntity) world.getBlockEntity(pos);
-        System.out.println("start: " + block.item);
-        if(block.item.isEmpty()) {
+        System.out.println("start: " + block.getStack(0));
+        if(block.isEmpty()) {
             if(!player.getStackInHand(hand).isEmpty()) {
-                block.item = player.getStackInHand(hand).copy();
-                block.item.setCount(1);
+                block.setStack(0, player.getStackInHand(hand).copy());
+                block.getStack(0).setCount(1);
                 block.markDirty();
-                player.getStackInHand(hand).decrement(1);
-                player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0f, 1.0f);System.out.println("finish: " + block.item);
+                if(!player.isCreative()) {
+                    player.getStackInHand(hand).decrement(1);
+                }
+                player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0f, 1.0f);System.out.println("finish: " + block.getStack(0));
                 return ActionResult.SUCCESS;
             }
         }else {
-            player.giveItemStack(block.item.copy());
-            block.item = ItemStack.EMPTY;
-            block.markDirty();System.out.println("finish: " + block.item);
+            player.giveItemStack(block.getStack(0).copy());
+            block.setStack(0, ItemStack.EMPTY);
+            block.markDirty();System.out.println("finish: " + block.getStack(0));
             return ActionResult.SUCCESS;
-        }System.out.println("finish: " + block.item);
+        }System.out.println("finish: " + block.getStack(0));
         return ActionResult.PASS;
     }
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         CountertopEntity block = (CountertopEntity) world.getWorld().getBlockEntity(pos);
-        if(!block.item.isEmpty()) {
-            ItemScatterer.spawn(world.getWorld(), pos.getX(), pos.getY(), pos.getZ(), block.item);
+        if(!block.isEmpty()) {
+            ItemScatterer.spawn(world.getWorld(), pos.getX(), pos.getY(), pos.getZ(), block.getStack(0));
         }
         super.onBreak(world, pos, state, player);
     }

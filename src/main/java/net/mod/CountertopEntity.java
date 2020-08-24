@@ -2,25 +2,32 @@ package net.mod;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.collection.DefaultedList;
 
-public class CountertopEntity extends BlockEntity {
-    public ItemStack item = ItemStack.EMPTY;
+public class CountertopEntity extends BlockEntity implements SingletInventory {
+    private final DefaultedList<ItemStack> item = DefaultedList.ofSize(1, ItemStack.EMPTY);
     public CountertopEntity() {
         super(Main.COUNTERTOP_ENTITY);
     }
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
-        tag.putInt("item", Item.getRawId(item.getItem()));
-        return tag;
+    public DefaultedList<ItemStack> getItems() {
+        return item;
     }
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        item = new ItemStack(Registry.ITEM.get(tag.getInt("item")));
+        Inventories.fromTag(tag, item);
+    }
+    @Override
+    public CompoundTag toTag(CompoundTag tag) {
+        Inventories.toTag(tag, item);
+        return super.toTag(tag);
+    }
+    @Override
+    public CompoundTag toInitialChunkDataTag() {
+        return Inventories.toTag(super.toInitialChunkDataTag(), item);
     }
 }
