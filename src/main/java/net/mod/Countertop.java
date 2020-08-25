@@ -33,7 +33,7 @@ public class Countertop extends Block implements BlockEntityProvider {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         CountertopEntity block = (CountertopEntity) world.getBlockEntity(pos);
         if(block.isEmpty()) {
-            if(!player.getStackInHand(hand).isEmpty()) {
+            if(!player.getStackInHand(hand).isEmpty() && !player.getStackInHand(hand).getItem().equals(Main.COUNTERTOP_ITEM)) {
                 block.setStack(0, player.getStackInHand(hand).copy());
                 block.getStack(0).setCount(1);
                 block.markDirty();

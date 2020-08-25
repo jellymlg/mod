@@ -17,9 +17,9 @@ public class CustomBlockEntityRenderer extends BlockEntityRenderer<CountertopEnt
     public void render(CountertopEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
         if(!entity.isEmpty()) {
-            matrices.translate(0.5D, 1.019D, 0.25D);
+            matrices.translate(0.5D, 1.02D, 0.3D);
             matrices.multiply(new Quaternion(90.0f, 0.0f, 0.0f, true));
-            matrices.scale(2.0f, 2.0f, 2.0f);
+            matrices.scale(1.5f, 1.5f, 1.5f);
             int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
             MinecraftClient.getInstance().getItemRenderer().renderItem(entity.getStack(0), ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers);
         }
