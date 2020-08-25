@@ -1,5 +1,8 @@
 {
     "variants": {
-      "": { "model": "mod:block/countertop" }
+      "facing=north": { "model": "mod:block/countertop" },
+      "facing=east":  { "model": "mod:block/countertop", "y":  90},
+      "facing=south": { "model": "mod:block/countertop", "y": 180 },
+      "facing=west":  { "model": "mod:block/countertop", "y": 270 }
     }
 }
