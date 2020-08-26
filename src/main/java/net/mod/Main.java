@@ -33,6 +33,7 @@ public class Main implements ModInitializer {
 	public static final Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
 	public static final Block COUNTERTOP = new Countertop();
 	public static final Item COUNTERTOP_ITEM = new BlockItem(COUNTERTOP, new Item.Settings().group(ITEMS));
+	public static final Item IRON_KNIFE=new Item(new Item.Settings().group(ITEMS));
 	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY;
 	@Override
 	public void onInitialize() {
@@ -44,6 +45,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("barley"), BARLEY);
 		Registry.register(Registry.ITEM, ID("barley_seed"), BARLEY_SEED);
 		Registry.register(Registry.ITEM, ID("wheatstick"), WHEATSTICK);
+		Registry.register(Registry.ITEM, ID("iron_knife"), IRON_KNIFE);
 		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
 		COUNTERTOP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null));
