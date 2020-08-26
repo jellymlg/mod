@@ -1,6 +1,7 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-      "all": "mod:block/lube"
-    }
+{   
+  "parent": "block/slime_block",
+  "textures": {
+    "particle": "mod:block/lube",
+    "texture": "mod:block/lube"
+  }
 }

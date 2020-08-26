@@ -26,14 +26,14 @@ import net.minecraft.world.World;
 public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
-	public static final Block LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
-	public static final Item SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
-	public static final Block BARLEY = new Barley();
+	public static final Lube LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
+	public static final Scythe SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
+	public static final Barley BARLEY = new Barley();
 	public static final Item BARLEY_SEED = new BlockItem(BARLEY, new Item.Settings().group(ITEMS));
 	public static final Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));
-	public static final Block COUNTERTOP = new Countertop();
+	public static final Countertop COUNTERTOP = new Countertop();
 	public static final Item COUNTERTOP_ITEM = new BlockItem(COUNTERTOP, new Item.Settings().group(ITEMS));
-	public static final Item IRON_KNIFE=new Item(new Item.Settings().group(ITEMS));
+	public static final Knife IRON_KNIFE = new Knife(new Item.Settings().group(ITEMS));
 	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY;
 	@Override
 	public void onInitialize() {
@@ -50,8 +50,8 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
 		COUNTERTOP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null));
 	}
-	public static Identifier ID(String itemName) {
-		return new Identifier("mod", itemName);
+	public static Identifier ID(String name) {
+		return new Identifier("mod", name);
 	}
 	public static void send(String msg) {
 		MinecraftClient.getInstance().getServer().getPlayerManager().sendToAll(new GameMessageS2CPacket(new LiteralText(msg), MessageType.CHAT, MathHelper.randomUuid()));

@@ -12,6 +12,7 @@ import net.minecraft.util.math.Direction;
 
 public class CustomBlockEntityRenderer extends BlockEntityRenderer<CountertopEntity> {
     private Direction q;
+    int lightAbove;
     private static final double Y_OFFSET = 0.95;
     public CustomBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
@@ -24,7 +25,7 @@ public class CustomBlockEntityRenderer extends BlockEntityRenderer<CountertopEnt
             directionalTranslation(matrices, q);
             matrices.multiply(q.getOpposite().getRotationQuaternion());
             matrices.scale(1.5f, 1.5f, 1.5f);
-            int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
+            lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
             MinecraftClient.getInstance().getItemRenderer().renderItem(entity.getStack(0), ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers);
         }
         matrices.pop();
