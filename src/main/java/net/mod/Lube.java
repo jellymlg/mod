@@ -11,7 +11,7 @@ import net.minecraft.world.BlockView;
 public class Lube extends SlimeBlock {
     public Lube(Settings settings) {
         super(settings);
-        BlockRenderLayerMap.INSTANCE.putBlock(this, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(this, RenderLayer.getCutout());
     }
     @Override
     public void onEntityLand(BlockView world, Entity entity) {

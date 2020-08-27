@@ -1,6 +1,14 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-      "layer0": "mod:item/iron_knife"
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mod:item/iron_knife"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "broken": 1
+      },
+      "model": "mod:item/broken_iron_knife"
     }
+  ]
 }
