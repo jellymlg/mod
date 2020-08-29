@@ -1,49 +1,46 @@
 package net.mod;
 
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class Knife extends SwordItem {
-    private static final String BROKEN = "broken";
-    public Knife(Settings settings) {
-        super(new CustomToolMaterial(0, 1, 2.0F, 2.0F, 0, null), 0, -2.0f, settings);
-        FabricModelPredicateProviderRegistry.register(this, new Identifier(BROKEN), (itemStack, clientWorld, livingEntity) -> {
-            return itemStack.getTag().getBoolean(BROKEN) ? 1.0f : 0.0f;
-        });
+    public Knife(Settings settings, boolean broken) {
+        super(new CustomToolMaterial(0, 1, 2.0f, broken ? 0.0f : 2.0f, 0, broken ? Ingredient.ofItems(Items.FLINT) : null), 0, -2.0f, settings);
     }
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        CompoundTag tag = stack.getTag();
-        tag.putBoolean(BROKEN, Math.random() * 100 < 5.0);
-        stack.setTag(tag);
-        Main.send("" + stack.getTag().getBoolean(BROKEN));
+        tryBreaking(attacker, stack, false);
         return true;
     }
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        CompoundTag tag = stack.getTag();
-        tag.putBoolean(BROKEN, Math.random() * 100 < 10.0);
-        stack.setTag(tag);
-        Main.send("" + stack.getTag().getBoolean(BROKEN));
-        return false;
-    }
-    @Override
-    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        return stack.getTag().getBoolean(BROKEN) ? ActionResult.FAIL : ActionResult.SUCCESS;
+        tryBreaking(miner, stack, true);
+        return true;
     }
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        return context.getStack().getTag().getBoolean(BROKEN) ? ActionResult.FAIL : ActionResult.SUCCESS;
+        BlockState block = context.getWorld().getBlockState(context.getBlockPos());
+        if(block.isOf(Main.COUNTERTOP) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).getItems().isEmpty()) {
+            Main.send("clicc");
+            return ActionResult.SUCCESS;
+        }
+        return ActionResult.PASS;
+    }
+    private void tryBreaking(LivingEntity entity, ItemStack stack, boolean isBlock) {
+        if(stack.getItem().equals(Main.IRON_KNIFE) && Math.random() * 100 < (isBlock ? 10.0D : 5.0D)) {
+            ((PlayerEntity) entity).inventory.removeOne(stack);
+            ((PlayerEntity) entity).inventory.insertStack(new ItemStack(Main.BROKEN_IRON_KNIFE));
+            entity.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
+        }
     }
 }
