@@ -27,7 +27,7 @@ public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
 	public static final Lube LUBE = new Lube(FabricBlockSettings.of(Material.METAL).breakByHand(true).sounds(BlockSoundGroup.HONEY).velocityMultiplier(2));
-	public static final Scythe SCYTHE = new Scythe(new Item.Settings().maxDamage(20).group(ITEMS));
+	public static final Scythe SCYTHE = new Scythe(new Item.Settings().group(ITEMS));
 	public static final Barley BARLEY = new Barley();
 	public static final Item BARLEY_SEED = new BlockItem(BARLEY, new Item.Settings().group(ITEMS));
 	public static final Item WHEATSTICK = new Item(new Item.Settings().group(ITEMS));

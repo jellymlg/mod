@@ -6,5 +6,6 @@
     "item.mod.wheatstick": "Wheat Sticks",
     "block.mod.barley": "Barley Seeds",
     "block.mod.countertop": "Countertop",
-    "item.mod.iron_knife": "Iron Knife"
+    "item.mod.iron_knife": "Iron Knife",
+    "item.mod.broken_iron_knife": "§cBroken Iron Knife"
 }

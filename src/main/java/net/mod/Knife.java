@@ -5,9 +5,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +13,7 @@ import net.minecraft.world.World;
 
 public class Knife extends SwordItem {
     public Knife(Settings settings, boolean broken) {
-        super(new CustomToolMaterial(0, 1, 2.0f, broken ? 0.0f : 2.0f, 0, broken ? Ingredient.ofItems(Items.FLINT) : null), 0, -2.0f, settings);
+        super(new CustomToolMaterial(0, 1, 2.0f, broken ? 0.0f : 2.0f, 0, null), 0, -2.0f, settings);
     }
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
