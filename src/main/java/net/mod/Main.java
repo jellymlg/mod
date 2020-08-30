@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.sound.BlockSoundGroup;
@@ -51,6 +52,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
 		COUNTERTOP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null));
+		Countertop.addRecipe(WHEATSTICK, new ItemStack[] {new ItemStack(Items.ACACIA_SLAB, 3), new ItemStack(Items.ENDER_PEARL)});
 	}
 	public static Identifier ID(String name) {
 		return new Identifier("mod", name);

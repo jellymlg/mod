@@ -28,7 +28,7 @@ public class Knife extends SwordItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState block = context.getWorld().getBlockState(context.getBlockPos());
-        if(block.isOf(Main.COUNTERTOP) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).getItems().isEmpty()) {
+        if(block.isOf(Main.COUNTERTOP) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
             Main.send("clicc");
             return ActionResult.SUCCESS;
         }
