@@ -29,16 +29,17 @@ public class Knife extends SwordItem {
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState block = context.getWorld().getBlockState(context.getBlockPos());
         if(block.isOf(Main.COUNTERTOP) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
-            Main.send("clicc");
+            CountertopEntity countertop = (CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos());
+            Main.send(countertop.getItems().toString());
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }
     private void tryBreaking(LivingEntity entity, ItemStack stack, boolean isBlock) {
         if(stack.getItem().equals(Main.IRON_KNIFE) && Math.random() * 100 < (isBlock ? 10.0D : 5.0D)) {
-            ((PlayerEntity) entity).inventory.removeOne(stack);
-            ((PlayerEntity) entity).inventory.insertStack(new ItemStack(Main.BROKEN_IRON_KNIFE));
-            entity.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
+            PlayerEntity player = (PlayerEntity) entity;
+            player.inventory.setStack(player.inventory.getSlotWithStack(stack), new ItemStack(Main.BROKEN_IRON_KNIFE));
+            player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
         }
     }
 }

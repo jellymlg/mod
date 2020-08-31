@@ -12,7 +12,7 @@ import net.minecraft.util.math.Direction;
 
 public class CustomBlockEntityRenderer extends BlockEntityRenderer<CountertopEntity> {
     private Direction q;
-    int lightAbove;
+    private int lightAbove;
     private static final double Y_OFFSET = 0.95;
     public CustomBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);

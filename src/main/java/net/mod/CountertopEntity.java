@@ -53,6 +53,10 @@ public class CountertopEntity extends BlockEntity implements CustomInventory {
     public boolean canPlayerUse(PlayerEntity player) {
         return false;
     }
+    @Override
+    public int getMaxCountPerStack() {
+        return 1;
+    }
     public boolean click() {
         return ++clicks == 3;
     }
