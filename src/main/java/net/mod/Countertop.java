@@ -54,7 +54,6 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
         if(block.isEmpty()) {
             if(!held.isEmpty() && !held.getItem().equals(Main.COUNTERTOP_ITEM)) {
                 block.setItem(held.getItem());
-                block.markDirty();
                 if(!player.isCreative()) {
                     held.decrement(1);
                 }

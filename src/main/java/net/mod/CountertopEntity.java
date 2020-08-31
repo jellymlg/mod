@@ -12,9 +12,13 @@ import net.minecraft.util.collection.DefaultedList;
 public class CountertopEntity extends BlockEntity implements CustomInventory {
     private final String CLICK_PROGRESS = "click_progress";
     private int clicks = 0;
-    private final DefaultedList<ItemStack> item = DefaultedList.ofSize(1, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> item = DefaultedList.ofSize(size(), ItemStack.EMPTY);
     public CountertopEntity() {
         super(Main.COUNTERTOP_ENTITY);
+    }
+    @Override
+    public int size() {
+        return 1;
     }
     @Override
     public DefaultedList<ItemStack> getItems() {

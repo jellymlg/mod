@@ -8,10 +8,6 @@ import net.minecraft.util.collection.DefaultedList;
 public interface CustomInventory extends Inventory {
     DefaultedList<ItemStack> getItems();
     @Override
-    default int size() {
-        return 1;
-    }
-    @Override
     default boolean isEmpty() {
         for(int i = 0; i < size(); i++) {
             if(!getStack(i).isEmpty()) {
