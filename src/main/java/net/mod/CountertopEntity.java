@@ -1,5 +1,6 @@
 package net.mod;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.collection.DefaultedList;
 
-public class CountertopEntity extends BlockEntity implements CustomInventory {
+public class CountertopEntity extends BlockEntity implements CustomInventory, BlockEntityClientSerializable {
     private final String CLICK_PROGRESS = "click_progress";
     private int clicks = 0;
     private final DefaultedList<ItemStack> item = DefaultedList.ofSize(size(), ItemStack.EMPTY);
@@ -64,5 +65,13 @@ public class CountertopEntity extends BlockEntity implements CustomInventory {
         clicks = 0;
         setItem(null);
         markDirty();
+    }
+    @Override
+    public void fromClientTag(CompoundTag tag) {
+        fromTag(null, tag);
+    }
+    @Override
+    public CompoundTag toClientTag(CompoundTag tag) {
+        return toTag(tag);
     }
 }
