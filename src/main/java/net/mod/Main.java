@@ -57,6 +57,7 @@ public class Main implements ModInitializer {
 		// Countertop.addRecipe(*STARTING ITEM*, new ItemStack[] {new ItemStack(Items.*OUTPUT #1*, *AMOUNT(int)*), new ItemStack(Items.*OUTPUT #2...*, *AMOUNT(int)*)});
 		
 		Countertop.addRecipe(Items.PUMPKIN, new ItemStack[] {new ItemStack(Items.CARVED_PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 3)});
+		Countertop.addRecipe(Items.MELON, new ItemStack[] {new ItemStack(Items.MELON_SLICE, 9)});
 	}
 	public static Identifier ID(String name) {
 		return new Identifier("mod", name);
