@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.utility;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;

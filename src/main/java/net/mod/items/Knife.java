@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.items;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +10,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.mod.Main;
+import net.mod.utility.CountertopEntity;
+import net.mod.utility.CustomToolMaterial;
 
 public class Knife extends SwordItem {
     public Knife(Settings settings, boolean broken) {

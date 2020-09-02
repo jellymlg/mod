@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.utility;
 
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;

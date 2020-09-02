@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.utility;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;

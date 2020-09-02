@@ -1,16 +1,20 @@
-package net.mod;
+package net.mod.utility;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.Direction;
+import net.mod.Main;
 
-public class CountertopEntity extends BlockEntity implements CustomInventory, BlockEntityClientSerializable {
+public class CountertopEntity extends BlockEntity implements CustomInventory, SidedInventory, BlockEntityClientSerializable {
     private final String CLICK_PROGRESS = "click_progress";
     private int clicks = 0;
     private final DefaultedList<ItemStack> item = DefaultedList.ofSize(size(), ItemStack.EMPTY);
@@ -54,10 +58,6 @@ public class CountertopEntity extends BlockEntity implements CustomInventory, Bl
     public boolean canPlayerUse(PlayerEntity player) {
         return false;
     }
-    @Override
-    public int getMaxCountPerStack() {
-        return 1;
-    }
     public boolean click() {
         return ++clicks == 3;
     }
@@ -73,5 +73,24 @@ public class CountertopEntity extends BlockEntity implements CustomInventory, Bl
     @Override
     public CompoundTag toClientTag(CompoundTag tag) {
         return toTag(tag);
+    }
+    @Override
+    public int[] getAvailableSlots(Direction side) {
+        return isEmpty() ? new int[] {0} : new int[0];
+    }
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, Direction dir) {
+        return isEmpty();
+    }
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+        return false;
+    }
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        if(world instanceof ServerWorld) {
+            sync();
+        }
     }
 }

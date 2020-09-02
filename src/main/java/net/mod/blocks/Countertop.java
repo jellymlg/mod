@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.blocks;
 
 import java.util.HashMap;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -27,6 +27,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.mod.Main;
+import net.mod.utility.CountertopEntity;
 
 public class Countertop extends HorizontalFacingBlock implements BlockEntityProvider {
     private static final HashMap<Item,ItemStack[]> RECIPES = new HashMap<Item,ItemStack[]>(0);

@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -8,6 +8,9 @@ import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.ActionResult;
+import net.mod.utility.CustomToolMaterial;
+import net.mod.Main;
+import net.mod.utility.Crop;
 
 public class Scythe extends SwordItem {
     public Scythe(Settings settings) {

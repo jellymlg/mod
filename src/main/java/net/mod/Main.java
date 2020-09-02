@@ -23,6 +23,13 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.mod.blocks.Barley;
+import net.mod.blocks.Countertop;
+import net.mod.blocks.Lube;
+import net.mod.items.Imrek;
+import net.mod.items.Knife;
+import net.mod.items.Scythe;
+import net.mod.utility.CountertopEntity;
 
 public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
@@ -36,7 +43,7 @@ public class Main implements ModInitializer {
 	public static final Item COUNTERTOP_ITEM = new BlockItem(COUNTERTOP, new Item.Settings().group(ITEMS));
 	public static final Knife IRON_KNIFE = new Knife(new Item.Settings().group(ITEMS), false);
 	public static final Knife BROKEN_IRON_KNIFE = new Knife(new Item.Settings(), true);
-	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY;
+	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY = BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null);
 	@Override
 	public void onInitialize() {
 		IMREK = new Imrek(new Item.Settings().group(ITEMS));
@@ -51,11 +58,9 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.ITEM, ID("broken_iron_knife"), BROKEN_IRON_KNIFE);
 		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
-		COUNTERTOP_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null));
-		
-		//To add recipe to countertop
-		// Countertop.addRecipe(*STARTING ITEM*, new ItemStack[] {new ItemStack(Items.*OUTPUT #1*, *AMOUNT(int)*), new ItemStack(Items.*OUTPUT #2...*, *AMOUNT(int)*)});
-		
+		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), COUNTERTOP_ENTITY);
+		/*To add recipe to countertop
+		Countertop.addRecipe(*STARTING ITEM*, new ItemStack[] {new ItemStack(Items.*OUTPUT #1*, *AMOUNT(int)*), new ItemStack(Items.*OUTPUT #2...*, *AMOUNT(int)*)});*/
 		Countertop.addRecipe(Items.PUMPKIN, new ItemStack[] {new ItemStack(Items.CARVED_PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 3)});
 		Countertop.addRecipe(Items.MELON, new ItemStack[] {new ItemStack(Items.MELON_SLICE, 9)});
 	}

@@ -1,4 +1,4 @@
-package net.mod;
+package net.mod.blocks;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.block.BlockState;
