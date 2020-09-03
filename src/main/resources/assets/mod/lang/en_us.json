@@ -8,6 +8,7 @@
     "block.mod.countertop": "Countertop",
     "item.mod.iron_knife": "Iron Knife",
     "item.mod.broken_iron_knife": "§cBroken Iron Knife",
-    "block.mod.tomato": "Tomato Seeds",
+    "item.mod.tomato": "Tomato",
+    "item.mod.tomato_seed": "Tomato Seeds",
     "block.mod.stake": "Stake"
 }

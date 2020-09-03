@@ -27,14 +27,13 @@ import net.mod.blocks.Barley;
 import net.mod.blocks.Countertop;
 import net.mod.blocks.Lube;
 import net.mod.blocks.Stake;
-import net.mod.blocks.Tomato;
 import net.mod.items.Imrek;
 import net.mod.items.Knife;
 import net.mod.items.Scythe;
 import net.mod.utility.CountertopEntity;
 import net.mod.utility.StakeEntity;
 
-public class Main implements ModInitializer {//MinecraftClient.getInstance().getBlockRenderManager().renderBlock(state, pos, world, matrix, vertexConsumer, cull, random);
+public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
 	public static final ItemGroup ITEMS = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
 	private static final Item.Settings modGroupSetting = new Item.Settings().group(ITEMS);
@@ -48,8 +47,8 @@ public class Main implements ModInitializer {//MinecraftClient.getInstance().get
 	public static final Knife IRON_KNIFE = new Knife(modGroupSetting, false);
 	public static final Knife BROKEN_IRON_KNIFE = new Knife(new Item.Settings(), true);
 	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY = BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null);
-	public static final Tomato TOMATO = new Tomato();
-	public static final Item TOMATO_SEED = new BlockItem(TOMATO, modGroupSetting);
+	public static final Item TOMATO_SEED = new Item(modGroupSetting);
+	public static final Item TOMATO = new Item(modGroupSetting);
 	public static final Stake STAKE = new Stake();
 	public static BlockEntityType<StakeEntity> STAKE_ENTITY = BlockEntityType.Builder.create(StakeEntity::new, STAKE).build(null);
 	@Override
@@ -67,8 +66,8 @@ public class Main implements ModInitializer {//MinecraftClient.getInstance().get
 		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), COUNTERTOP_ENTITY);
-		Registry.register(Registry.BLOCK, ID("tomato"), TOMATO);
 		Registry.register(Registry.ITEM, ID("tomato_seed"), TOMATO_SEED);
+		Registry.register(Registry.ITEM, ID("tomato"), TOMATO);
 		Registry.register(Registry.BLOCK, ID("stake"), STAKE);
 		Registry.register(Registry.ITEM, ID("stake"), new BlockItem(STAKE, modGroupSetting));
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("stake_entity"), STAKE_ENTITY);

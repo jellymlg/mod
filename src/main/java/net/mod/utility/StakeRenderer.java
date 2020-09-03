@@ -1,5 +1,7 @@
 package net.mod.utility;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
@@ -11,5 +13,10 @@ public class StakeRenderer extends BlockEntityRenderer<StakeEntity> {
     }
     @Override
     public void render(StakeEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        if(entity.hasPlant()) {
+            matrices.push();
+            MinecraftClient.getInstance().getBlockRenderManager().renderBlock(entity.getPlant().withAge(entity.getPlant().getAge()), entity.getPos(), entity.getWorld(), matrices, vertexConsumers.getBuffer(RenderLayer.getCutout()), false, entity.getWorld().getRandom());
+            matrices.pop();
+        }
     }
 }
