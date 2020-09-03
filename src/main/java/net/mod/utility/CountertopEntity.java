@@ -64,7 +64,6 @@ public class CountertopEntity extends BlockEntity implements CustomInventory, Si
     public void reset() {
         clicks = 0;
         setItem(null);
-        markDirty();
     }
     @Override
     public void fromClientTag(CompoundTag tag) {

@@ -8,14 +8,14 @@ import net.minecraft.state.StateManager.Builder;
 import net.mod.Main;
 import net.mod.utility.Crop;
 
-public class Barley extends Crop {
-    public static final IntProperty AGE = IntProperty.of("age", 0, 6);
-    public Barley() {
-        super(6);
+public class Tomato extends Crop {
+    public static final IntProperty AGE = IntProperty.of("age", 0, 8);
+    public Tomato() {
+        super(8);
     }
     @Override
     protected ItemConvertible getSeedsItem() {
-        return Main.BARLEY_SEED;
+        return Main.TOMATO_SEED;
     }
     @Override
     public IntProperty getAgeProperty() {
@@ -24,5 +24,9 @@ public class Barley extends Crop {
     @Override
     protected void appendProperties(Builder<Block, BlockState> builder) {
         builder.add(AGE);
+    }
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return (Integer)state.get(this.getAgeProperty()) > 0 && super.hasRandomTicks(state);
     }
 }

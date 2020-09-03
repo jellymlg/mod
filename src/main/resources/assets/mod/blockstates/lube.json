@@ -1,5 +1,5 @@
 {
-    "variants": {
-      "": { "model": "mod:block/lube" }
-    }
+  "variants": {
+    "": { "model": "mod:block/lube" }
+  }
 }
