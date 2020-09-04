@@ -68,19 +68,19 @@ public class Stake extends CropBlock implements BlockEntityProvider {
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(player.getStackInHand(hand).isEmpty()) {
+        if(player.getMainHandStack().isEmpty()) {
             if(entity.hasPlant() && entity.getPlant().isMature()) {
-                if(entity.getPlant().setAge(entity.getPlant().getAge() + 1).use()) {
+                if(entity.getPlant().setAge(4).use()) {
                     world.breakBlock(pos, false, player);
                 }
                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.BROKEN_IRON_KNIFE));
                 return ActionResult.SUCCESS;
             }
         }else {
-            if(player.getStackInHand(hand).getItem().equals(Main.TOMATO_SEED)) {
+            if(player.getMainHandStack().getItem().equals(Main.TOMATO_SEED)) {
                 entity.setPlant(new Tomato());
                 if(!player.isCreative()) {
-                    player.getStackInHand(hand).decrement(1);
+                    player.getMainHandStack().decrement(1);
                 }
                 return ActionResult.SUCCESS;
             }
