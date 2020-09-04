@@ -6,13 +6,14 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.mod.Main;
 
 public class StakeRenderer extends BlockEntityRenderer<StakeEntity> {
     public StakeRenderer(BlockEntityRenderDispatcher dispatcher) {
         super(dispatcher);
     }
     @Override
-    public void render(StakeEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(StakeEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {Main.send("" + entity.hasPlant());
         if(entity.hasPlant()) {
             matrices.push();
             MinecraftClient.getInstance().getBlockRenderManager().renderBlock(entity.getPlant().withAge(entity.getPlant().getAge()), entity.getPos(), entity.getWorld(), matrices, vertexConsumers.getBuffer(RenderLayer.getCutout()), false, entity.getWorld().getRandom());

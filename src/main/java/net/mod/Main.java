@@ -27,6 +27,7 @@ import net.mod.blocks.Barley;
 import net.mod.blocks.Countertop;
 import net.mod.blocks.Lube;
 import net.mod.blocks.Stake;
+import net.mod.blocks.Tomato;
 import net.mod.items.Imrek;
 import net.mod.items.Knife;
 import net.mod.items.Scythe;
@@ -48,7 +49,8 @@ public class Main implements ModInitializer {
 	public static final Knife BROKEN_IRON_KNIFE = new Knife(new Item.Settings(), true);
 	public static BlockEntityType<CountertopEntity> COUNTERTOP_ENTITY = BlockEntityType.Builder.create(CountertopEntity::new, COUNTERTOP).build(null);
 	public static final Item TOMATO_SEED = new Item(modGroupSetting);
-	public static final Item TOMATO = new Item(modGroupSetting);
+	public static final Tomato TOMATO_PLANT = new Tomato();
+	public static final Item TOMATO_ITEM = new Item(modGroupSetting);
 	public static final Stake STAKE = new Stake();
 	public static BlockEntityType<StakeEntity> STAKE_ENTITY = BlockEntityType.Builder.create(StakeEntity::new, STAKE).build(null);
 	@Override
@@ -66,8 +68,9 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK, ID("countertop"), COUNTERTOP);
 		Registry.register(Registry.ITEM, ID("countertop_item"), COUNTERTOP_ITEM);
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("countertop_entity"), COUNTERTOP_ENTITY);
+		Registry.register(Registry.BLOCK, ID("tomato_plant"), TOMATO_PLANT);
 		Registry.register(Registry.ITEM, ID("tomato_seed"), TOMATO_SEED);
-		Registry.register(Registry.ITEM, ID("tomato"), TOMATO);
+		Registry.register(Registry.ITEM, ID("tomato_item"), TOMATO_ITEM);
 		Registry.register(Registry.BLOCK, ID("stake"), STAKE);
 		Registry.register(Registry.ITEM, ID("stake"), new BlockItem(STAKE, modGroupSetting));
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("stake_entity"), STAKE_ENTITY);
