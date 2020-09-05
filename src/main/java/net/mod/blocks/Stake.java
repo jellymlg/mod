@@ -51,7 +51,7 @@ public class Stake extends CropBlock implements BlockEntityProvider {
     @Override
     public void applyGrowth(World world, BlockPos pos, BlockState state) {
         StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
-        entity.setAge(entity.getAge() + Math.min(entity.getAge() + 1, entity.getMaxAge()));
+        entity.setAge(Math.min(entity.getAge() + 1, entity.getMaxAge()));
     }
     @Override
     protected ItemConvertible getSeedsItem() {
@@ -85,7 +85,6 @@ public class Stake extends CropBlock implements BlockEntityProvider {
     }
     @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        Main.send("" + ((StakeEntity) world.getBlockEntity(pos)).getAge());
         return !((StakeEntity) world.getBlockEntity(pos)).isMature();
     }
 }

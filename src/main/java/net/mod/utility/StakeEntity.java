@@ -3,6 +3,7 @@ package net.mod.utility;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CropBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
@@ -25,8 +26,9 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
         markDirty();
     }
     public void setAge(int age) {
-        if(hasPlant() && age >= 0 && age < getMaxAge()) {
+        if(hasPlant() && age >= 0 && age <= getMaxAge()) {
             this.age = age;
+            markDirty();
         }
     }
     public int getMaxAge() {
@@ -54,7 +56,8 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
         return plant != null;
     }
     public BlockState getState() {
-        return hasPlant() ? plant.withAge(age) : Blocks.AIR.getDefaultState();
+        return hasPlant() ? ((CropBlock) Blocks.WHEAT).withAge(age) : Blocks.AIR.getDefaultState();
+        //return hasPlant() ? plant.withAge(age) : Blocks.AIR.getDefaultState();
     }
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
