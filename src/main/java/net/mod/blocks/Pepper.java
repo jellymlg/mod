@@ -4,12 +4,12 @@ import net.minecraft.item.ItemConvertible;
 import net.mod.Main;
 import net.mod.utility.StakeCompatible;
 
-public class Tomato extends StakeCompatible {
-    public Tomato() {
+public class Pepper extends StakeCompatible {
+    public Pepper() {
         super(7);
     }
     @Override
     protected ItemConvertible getSeedsItem() {
-        return Main.TOMATO_SEED;
+        return Main.PEPPER_SEED;
     }
 }

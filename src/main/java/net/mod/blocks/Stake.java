@@ -1,7 +1,6 @@
 package net.mod.blocks;
 
 import java.util.Random;
-
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -26,69 +25,67 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.mod.Main;
+import net.mod.utility.StakeCompatibleType;
 import net.mod.utility.StakeEntity;
 
 public class Stake extends CropBlock implements BlockEntityProvider {
     private static final VoxelShape OUTLINE = Block.createCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-    private StakeEntity entity;
     public Stake() {
         super(FabricBlockSettings.copy(Blocks.WHEAT).sounds(BlockSoundGroup.WOOD));
         BlockRenderLayerMap.INSTANCE.putBlock(this, RenderLayer.getCutout());
     }
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return entity = new StakeEntity();
+        return new StakeEntity();
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return OUTLINE;
     }
     @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return entity != null ? entity.hasPlant() : false;
-    }
-    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(world.getBaseLightLevel(pos, 0) >= 9 && getAge(state) < getMaxAge() && random.nextInt((int)(25.0F / getAvailableMoisture(this, world, pos)) + 1) == 0) {
-            entity.getPlant().setAge(entity.getPlant().getAge() + 1);
+            ((StakeEntity) world.getBlockEntity(pos)).setAge(((StakeEntity) world.getBlockEntity(pos)).getAge() + 1);
         }
     }
     @Override
     public void applyGrowth(World world, BlockPos pos, BlockState state) {
-        entity.getPlant().setAge(entity.getPlant().getAge() + Math.min(getAge(state) + getGrowthAmount(world), entity.getPlant().getMaxAge()));
+        StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
+        entity.setAge(entity.getAge() + Math.min(entity.getAge() + 1, entity.getMaxAge()));
     }
     @Override
     protected ItemConvertible getSeedsItem() {
-        if(entity.hasPlant()) {
-            if(entity.getPlant() instanceof Tomato) {
-                return ((Tomato) entity.getPlant()).getSeedsItem();
-            }
-        }
         return Main.STAKE;
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
         if(player.getMainHandStack().isEmpty()) {
-            if(entity.hasPlant() && entity.getPlant().isMature()) {
-                if(entity.getPlant().setAge(4).use()) {
+            if(entity.hasPlant() && entity.isMature()) {
+                entity.setAge(4);
+                if(entity.use()) {
                     world.breakBlock(pos, false, player);
                 }
                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.BROKEN_IRON_KNIFE));
                 return ActionResult.SUCCESS;
             }
+            return ActionResult.PASS;
         }else {
-            if(player.getMainHandStack().getItem().equals(Main.TOMATO_SEED)) {
-                entity.setPlant(new Tomato());
+            if(player.getMainHandStack().getItem().equals(Main.TOMATO_SEED) && !entity.hasPlant()) {
+                entity.setPlant(Main.TOMATO, StakeCompatibleType.TOMATO);
                 if(!player.isCreative()) {
                     player.getMainHandStack().decrement(1);
                 }
                 return ActionResult.SUCCESS;
+            }else {
+                Main.send(pos.toString() + " : " + entity.getAge());
             }
         }
         return ActionResult.PASS;
     }
-    public class Compatible {
-        public static final String Tomato = "tomato";
-        public static final String Pepper = "pepper";
+    @Override
+    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+        Main.send("" + ((StakeEntity) world.getBlockEntity(pos)).getAge());
+        return !((StakeEntity) world.getBlockEntity(pos)).isMature();
     }
 }
