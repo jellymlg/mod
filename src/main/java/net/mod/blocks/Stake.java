@@ -44,8 +44,9 @@ public class Stake extends CropBlock implements BlockEntityProvider {
     }
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(world.getBaseLightLevel(pos, 0) >= 9 && getAge(state) < getMaxAge() && random.nextInt((int)(25.0F / getAvailableMoisture(this, world, pos)) + 1) == 0) {
-            ((StakeEntity) world.getBlockEntity(pos)).setAge(((StakeEntity) world.getBlockEntity(pos)).getAge() + 1);
+        StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
+        if(entity.getAge() < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9 && random.nextInt((int)(25.0F / getAvailableMoisture(this, world, pos)) + 1) == 0) {
+            entity.setAge(entity.getAge() + 1);
         }
     }
     @Override
