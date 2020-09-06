@@ -80,10 +80,8 @@ public class Main implements ModInitializer {
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ID("stake_entity"), STAKE_ENTITY);
 		Registry.register(Registry.BLOCK, ID("pepper_plant"), PEPPER);
 		Registry.register(Registry.ITEM, ID("pepper_seed"), PEPPER_SEED);
-		/*To add recipe to countertop
-		Countertop.addRecipe(*STARTING ITEM*, new ItemStack[] {new ItemStack(Items.*OUTPUT #1*, *AMOUNT(int)*), new ItemStack(Items.*OUTPUT #2...*, *AMOUNT(int)*)});*/
-		Countertop.addRecipe(Items.PUMPKIN, new ItemStack[] {new ItemStack(Items.CARVED_PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 3)});
-		Countertop.addRecipe(Items.MELON, new ItemStack[] {new ItemStack(Items.MELON_SLICE, 9)});
+		Countertop.addRecipe(IRON_KNIFE, Items.PUMPKIN, new ItemStack[] {new ItemStack(Items.CARVED_PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 3)});
+		Countertop.addRecipe(IRON_KNIFE, Items.MELON, new ItemStack[] {new ItemStack(Items.MELON_SLICE, 9)});
 	}
 	public static Identifier ID(String name) {
 		return new Identifier("mod", name);

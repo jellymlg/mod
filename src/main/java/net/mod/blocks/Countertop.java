@@ -1,6 +1,6 @@
 package net.mod.blocks;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -31,7 +31,7 @@ import net.mod.Main;
 import net.mod.utility.CountertopEntity;
 
 public class Countertop extends HorizontalFacingBlock implements BlockEntityProvider {
-    private static final HashMap<Item,ItemStack[]> RECIPES = new HashMap<Item,ItemStack[]>(0);
+    private static final ArrayList<Recipe> RECIPES = new ArrayList<Recipe>(0);
     public Countertop() {
         super(FabricBlockSettings.copyOf(Blocks.GLASS).sounds(BlockSoundGroup.STONE).requiresTool().strength(1.5f, 6.0f));
         BlockRenderLayerMap.INSTANCE.putBlock(this, RenderLayer.getTranslucent());
@@ -53,6 +53,7 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         CountertopEntity block = (CountertopEntity) world.getBlockEntity(pos);
         ItemStack held = player.getStackInHand(hand);
+        int x;
         if(block.isEmpty()) {
             if(!held.isEmpty() && !held.getItem().equals(Main.COUNTERTOP_ITEM)) {
                 block.setItem(held.getItem());
@@ -62,10 +63,10 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
                 player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1.0f, 1.0f);
                 return ActionResult.SUCCESS;
             }
-        }else if(RECIPES.containsKey(block.getItem()) && held.getItem().equals(Main.IRON_KNIFE)) {
+        }else if((x = recipeExists(held.getItem(), block.getItem())) >= 0) {
             if(block.click()) {
                 ItemEntity entity;
-                for(ItemStack stack : RECIPES.get(block.getItem())) {
+                for(ItemStack stack : RECIPES.get(x).out) {
                     entity = new ItemEntity(world, pos.getX() + 0.5d, pos.up().getY(), pos.getZ() + 0.5d, stack.copy());
                     entity.setVelocity(0.0d, 0.0d, 0.0d);
                     world.spawnEntity(entity);
@@ -90,7 +91,25 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
         }
         super.onBreak(world, pos, state, player);
     }
-    public static void addRecipe(Item in, ItemStack[] out) {
-        RECIPES.putIfAbsent(in, out);
+    private int recipeExists(Item tool, Item in) {
+        for(int i = 0; i < RECIPES.size(); i++) {
+            if(RECIPES.get(i).tool == tool && RECIPES.get(i).in == in) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static void addRecipe(Item tool, Item in, ItemStack[] out) {
+        RECIPES.add(new Recipe(tool, in, out));
+    }
+    public static class Recipe {
+        private Item tool;
+        private Item in;
+        private ItemStack[] out;
+        private Recipe(Item tool, Item in, ItemStack[] out) {
+            this.tool = tool;
+            this.in = in;
+            this.out = out;
+        }
     }
 }
