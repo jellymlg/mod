@@ -23,6 +23,8 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     public void setPlant(StakeCompatible plant, StakeCompatibleType type) {
         this.plant = plant;
         this.type = type;
+        this.age = 0;
+        this.uses = 4;
         markDirty();
     }
     public void setAge(int age) {
@@ -62,7 +64,7 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        if(!hasPlant() && !tag.getString(PLANT_TYPE).isEmpty()) {
+        if(!tag.getString(PLANT_TYPE).isEmpty()) {
             plant = getPlant(tag.getString(PLANT_TYPE));
             age = tag.getInt(PLANT_AGE);
             uses = tag.getInt(PLANT_USES);
