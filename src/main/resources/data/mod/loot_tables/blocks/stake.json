@@ -6,7 +6,7 @@
         "entries": [
           {
             "type": "minecraft:item",
-            "name": "mod:stake"
+            "name": "mod:stake_item"
           }
         ]
       }
