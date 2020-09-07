@@ -7,7 +7,7 @@ import net.minecraft.block.CropBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
-import net.mod.Main;
+import net.mod.Stuff;
 
 public class StakeEntity extends BlockEntity implements BlockEntityClientSerializable {
     private static final String PLANT_TYPE = "plant_type";
@@ -18,7 +18,7 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     private int age = 0;
     private int uses = 4;
     public StakeEntity() {
-        super(Main.STAKE_ENTITY);
+        super(Stuff.BlockEntities.STAKE_ENTITY.asBlockEntity());
     }
     public void setPlant(StakeCompatible plant, StakeCompatibleType type) {
         this.plant = plant;
@@ -102,9 +102,9 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     private StakeCompatible getPlant(String type) {
         switch(StakeCompatibleType.getFromString(type)) {
             case TOMATO:
-                return Main.TOMATO;
+                return (StakeCompatible) Stuff.Blocks.TOMATO_PLANT.asBlock();
             case PEPPER:
-                return Main.PEPPER;
+                return (StakeCompatible) Stuff.Blocks.PEPPER_PLANT.asBlock();
             default:
                 return (StakeCompatible) Blocks.AIR;
         }

@@ -11,6 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.mod.Main;
+import net.mod.Stuff;
 import net.mod.utility.CountertopEntity;
 import net.mod.utility.CustomToolMaterial;
 
@@ -31,7 +32,7 @@ public class Knife extends SwordItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState block = context.getWorld().getBlockState(context.getBlockPos());
-        if(block.isOf(Main.COUNTERTOP) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
+        if(block.isOf(Stuff.Blocks.COUNTERTOP.asBlock()) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
             CountertopEntity countertop = (CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos());
             Main.send(countertop.getItems().toString());
             return ActionResult.SUCCESS;
@@ -39,9 +40,9 @@ public class Knife extends SwordItem {
         return ActionResult.PASS;
     }
     private void tryBreaking(LivingEntity entity, ItemStack stack, boolean isBlock) {
-        if(stack.getItem().equals(Main.IRON_KNIFE) && Math.random() * 100 < (isBlock ? 10.0D : 5.0D)) {
+        if(stack.getItem().equals(Stuff.Items.IRON_KNIFE.asItem()) && Math.random() * 100 < (isBlock ? 10.0D : 5.0D)) {
             PlayerEntity player = (PlayerEntity) entity;
-            player.inventory.setStack(player.inventory.getSlotWithStack(stack), new ItemStack(Main.BROKEN_IRON_KNIFE));
+            player.inventory.setStack(player.inventory.getSlotWithStack(stack), new ItemStack(Stuff.Items.BROKEN_IRON_KNIFE.asItem()));
             player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
         }
     }

@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.StateManager.Builder;
-import net.mod.Main;
+import net.mod.Stuff;
 import net.mod.utility.Crop;
 
 public class Barley extends Crop {
@@ -15,7 +15,7 @@ public class Barley extends Crop {
     }
     @Override
     protected ItemConvertible getSeedsItem() {
-        return Main.BARLEY_SEED;
+        return Stuff.Items.BARLEY_SEED.asItem();
     }
     @Override
     public IntProperty getAgeProperty() {

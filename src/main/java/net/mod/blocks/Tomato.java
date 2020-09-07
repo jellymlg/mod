@@ -1,7 +1,7 @@
 package net.mod.blocks;
 
 import net.minecraft.item.ItemConvertible;
-import net.mod.Main;
+import net.mod.Stuff;
 import net.mod.utility.StakeCompatible;
 
 public class Tomato extends StakeCompatible {
@@ -10,6 +10,6 @@ public class Tomato extends StakeCompatible {
     }
     @Override
     protected ItemConvertible getSeedsItem() {
-        return Main.TOMATO_SEED;
+        return Stuff.Items.TOMATO_SEED.asItem();
     }
 }

@@ -10,6 +10,9 @@
     "item.mod.broken_iron_knife": "§cBroken Iron Knife",
     "item.mod.tomato_item": "Tomato",
     "item.mod.tomato_seed": "Tomato Seeds",
+    "item.mod.pepper_item": "Pepper",
     "item.mod.pepper_seed": "Pepper Seeds",
+    "item.mod.cucumber_item": "Cucumber",
+    "item.mod.cucumber_seed": "Cucumber Seeds",
     "block.mod.stake": "Stake"
 }

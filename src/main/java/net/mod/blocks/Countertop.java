@@ -27,7 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.mod.Main;
+import net.mod.Stuff;
 import net.mod.utility.CountertopEntity;
 
 public class Countertop extends HorizontalFacingBlock implements BlockEntityProvider {
@@ -55,7 +55,7 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
         ItemStack held = player.getStackInHand(hand);
         int x;
         if(block.isEmpty()) {
-            if(!held.isEmpty() && !held.getItem().equals(Main.COUNTERTOP_ITEM)) {
+            if(!held.isEmpty() && !held.getItem().equals(Stuff.Items.COUNTERTOP_ITEM.asItem())) {
                 block.setItem(held.getItem());
                 if(!player.isCreative()) {
                     held.decrement(1);
