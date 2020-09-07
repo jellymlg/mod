@@ -102,7 +102,7 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
     public static void addRecipe(Item tool, Item in, ItemStack[] out) {
         RECIPES.add(new Recipe(tool, in, out));
     }
-    public static class Recipe {
+    private static class Recipe {
         private Item tool;
         private Item in;
         private ItemStack[] out;
