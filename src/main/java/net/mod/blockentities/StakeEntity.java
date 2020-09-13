@@ -1,12 +1,15 @@
-package net.mod.utility;
+package net.mod.blockentities;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CropBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
-import net.mod.Main;
+import net.mod.Stuff;
+import net.mod.utility.StakeCompatible;
+import net.mod.utility.StakeCompatibleType;
 
 public class StakeEntity extends BlockEntity implements BlockEntityClientSerializable {
     private static final String PLANT_TYPE = "plant_type";
@@ -17,16 +20,19 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     private int age = 0;
     private int uses = 4;
     public StakeEntity() {
-        super(Main.STAKE_ENTITY);
+        super(Stuff.BlockEntities.STAKE_ENTITY.asBlockEntity());
     }
     public void setPlant(StakeCompatible plant, StakeCompatibleType type) {
         this.plant = plant;
         this.type = type;
+        this.age = 0;
+        this.uses = 4;
         markDirty();
     }
     public void setAge(int age) {
-        if(hasPlant() && age >= 0 && age < getMaxAge()) {
+        if(hasPlant() && age >= 0 && age <= getMaxAge()) {
             this.age = age;
+            markDirty();
         }
     }
     public int getMaxAge() {
@@ -54,12 +60,13 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
         return plant != null;
     }
     public BlockState getState() {
-        return hasPlant() ? plant.withAge(age) : Blocks.AIR.getDefaultState();
+        return hasPlant() ? ((CropBlock) Blocks.WHEAT).withAge(age) : Blocks.AIR.getDefaultState();
+        //return hasPlant() ? plant.withAge(age) : Blocks.AIR.getDefaultState();
     }
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        if(!hasPlant() && !tag.getString(PLANT_TYPE).isEmpty()) {
+        if(!tag.getString(PLANT_TYPE).isEmpty()) {
             plant = getPlant(tag.getString(PLANT_TYPE));
             age = tag.getInt(PLANT_AGE);
             uses = tag.getInt(PLANT_USES);
@@ -97,9 +104,9 @@ public class StakeEntity extends BlockEntity implements BlockEntityClientSeriali
     private StakeCompatible getPlant(String type) {
         switch(StakeCompatibleType.getFromString(type)) {
             case TOMATO:
-                return Main.TOMATO;
+                return (StakeCompatible) Stuff.Blocks.TOMATO_PLANT.asBlock();
             case PEPPER:
-                return Main.PEPPER;
+                return (StakeCompatible) Stuff.Blocks.PEPPER_PLANT.asBlock();
             default:
                 return (StakeCompatible) Blocks.AIR;
         }

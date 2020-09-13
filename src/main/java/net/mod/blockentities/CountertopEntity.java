@@ -1,4 +1,4 @@
-package net.mod.utility;
+package net.mod.blockentities;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -12,14 +12,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
-import net.mod.Main;
+import net.mod.Stuff;
+import net.mod.utility.CustomInventory;
 
 public class CountertopEntity extends BlockEntity implements CustomInventory, SidedInventory, BlockEntityClientSerializable {
     private final String CLICK_PROGRESS = "click_progress";
     private int clicks = 0;
     private final DefaultedList<ItemStack> item = DefaultedList.ofSize(size(), ItemStack.EMPTY);
     public CountertopEntity() {
-        super(Main.COUNTERTOP_ENTITY);
+        super(Stuff.BlockEntities.COUNTERTOP_ENTITY.asBlockEntity());
     }
     @Override
     public int size() {

@@ -9,7 +9,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.ActionResult;
 import net.mod.utility.CustomToolMaterial;
-import net.mod.Main;
+import net.mod.Stuff;
 import net.mod.utility.Crop;
 
 public class Scythe extends SwordItem {
@@ -19,9 +19,9 @@ public class Scythe extends SwordItem {
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState state = context.getWorld().getBlockState(context.getBlockPos());
-        if(state.getBlock().is(Main.BARLEY) && ((Crop) state.getBlock()).isMature(state)) {
-            Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Main.WHEATSTICK, 2));
-            Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Main.BARLEY_SEED, 1));
+        if(state.getBlock().is(Stuff.Blocks.BARLEY.asBlock()) && ((Crop) state.getBlock()).isMature(state)) {
+            Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Stuff.Items.WHEATSTICK.asItem(), 2));
+            Block.dropStack(context.getWorld(), context.getBlockPos(), new ItemStack(Stuff.Items.BARLEY_SEED.asItem(), 1));
             context.getWorld().setBlockState(context.getBlockPos(), ((Crop) state.getBlock()).withAge(0), 2);
             super.postHit(context.getStack(), null, context.getPlayer());
             return ActionResult.SUCCESS;
