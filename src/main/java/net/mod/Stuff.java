@@ -1,13 +1,17 @@
 package net.mod;
 
+import java.util.function.Supplier;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.item.BlockItem;
+import net.mod.blockentities.CountertopEntity;
+import net.mod.blockentities.StakeEntity;
 import net.mod.blocks.Lube;
 import net.mod.blocks.Barley;
 import net.mod.blocks.Tomato;
@@ -17,8 +21,6 @@ import net.mod.blocks.Countertop;
 import net.mod.blocks.Stake;
 import net.mod.items.Knife;
 import net.mod.items.Scythe;
-import net.mod.utility.CountertopEntity;
-import net.mod.utility.StakeEntity;
 
 public class Stuff {
     public enum Blocks {
@@ -61,8 +63,8 @@ public class Stuff {
         }
     }
     public enum BlockEntities {
-        COUNTERTOP_ENTITY(BlockEntityType.Builder.create(CountertopEntity::new, Blocks.COUNTERTOP.block).build(null)),
-        STAKE_ENTITY(BlockEntityType.Builder.create(StakeEntity::new, Blocks.STAKE.block).build(null));
+        COUNTERTOP_ENTITY(blockEntity(CountertopEntity::new, Blocks.COUNTERTOP.block)),
+        STAKE_ENTITY(blockEntity(StakeEntity::new, Blocks.STAKE.block));
         private BlockEntityType<?> blockEntity;
         private BlockEntities(BlockEntityType<?> blockEntity) {
             this.blockEntity = blockEntity;
@@ -74,6 +76,9 @@ public class Stuff {
     private static boolean added = false;
     private static Item basicItem() {
         return new Item(Main.Group);
+    }
+    private static BlockEntityType<?> blockEntity(Supplier<? extends BlockEntity> supplier, Block block) {
+        return BlockEntityType.Builder.create(supplier, block).build(null);
     }
     public static void addAll() {
         if(!added) {

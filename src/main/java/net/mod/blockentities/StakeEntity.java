@@ -1,4 +1,4 @@
-package net.mod.utility;
+package net.mod.blockentities;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -8,6 +8,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
 import net.mod.Stuff;
+import net.mod.utility.StakeCompatible;
+import net.mod.utility.StakeCompatibleType;
 
 public class StakeEntity extends BlockEntity implements BlockEntityClientSerializable {
     private static final String PLANT_TYPE = "plant_type";

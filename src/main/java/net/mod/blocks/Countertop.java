@@ -28,7 +28,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.mod.Stuff;
-import net.mod.utility.CountertopEntity;
+import net.mod.blockentities.CountertopEntity;
 
 public class Countertop extends HorizontalFacingBlock implements BlockEntityProvider {
     private static final ArrayList<Recipe> RECIPES = new ArrayList<Recipe>(0);
@@ -91,7 +91,7 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
         }
         super.onBreak(world, pos, state, player);
     }
-    private int recipeExists(Item tool, Item in) {
+    private static int recipeExists(Item tool, Item in) {
         for(int i = 0; i < RECIPES.size(); i++) {
             if(RECIPES.get(i).tool == tool && RECIPES.get(i).in == in) {
                 return i;
@@ -100,7 +100,9 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
         return -1;
     }
     public static void addRecipe(Item tool, Item in, ItemStack[] out) {
-        RECIPES.add(new Recipe(tool, in, out));
+        if(recipeExists(tool, in) >= 0) {
+            RECIPES.add(new Recipe(tool, in, out));
+        }
     }
     private static class Recipe {
         private Item tool;

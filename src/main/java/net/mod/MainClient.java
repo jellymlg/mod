@@ -3,10 +3,11 @@ package net.mod;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.entity.BlockEntityType;
-import net.mod.utility.CountertopEntity;
-import net.mod.utility.CountertopRenderer;
-import net.mod.utility.StakeEntity;
-import net.mod.utility.StakeRenderer;
+import net.mod.blockentities.CountertopEntity;
+import net.mod.blockentities.CountertopRenderer;
+import net.mod.blockentities.StakeEntity;
+import net.mod.blockentities.StakeRenderer;
+
 
 public class MainClient implements ClientModInitializer {
     @SuppressWarnings("unchecked")

@@ -1,4 +1,4 @@
-package net.mod.utility;
+package net.mod.blockentities;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
@@ -13,6 +13,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import net.mod.Stuff;
+import net.mod.utility.CustomInventory;
 
 public class CountertopEntity extends BlockEntity implements CustomInventory, SidedInventory, BlockEntityClientSerializable {
     private final String CLICK_PROGRESS = "click_progress";

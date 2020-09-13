@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.mod.Main;
 import net.mod.Stuff;
-import net.mod.utility.CountertopEntity;
+import net.mod.blockentities.CountertopEntity;
 import net.mod.utility.CustomToolMaterial;
 
 public class Knife extends SwordItem {

@@ -25,9 +25,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.mod.Stuff;
+import net.mod.blockentities.StakeEntity;
 import net.mod.utility.StakeCompatible;
 import net.mod.utility.StakeCompatibleType;
-import net.mod.utility.StakeEntity;
 
 public class Stake extends CropBlock implements BlockEntityProvider {
     private static final VoxelShape OUTLINE = Block.createCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
