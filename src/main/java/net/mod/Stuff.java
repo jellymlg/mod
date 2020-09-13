@@ -40,11 +40,11 @@ public class Stuff {
         }
     }
     public enum Items {
-        LUBE_ITEM(new BlockItem(Blocks.LUBE.block, Main.Group)),
-        SCYTHE(new Scythe(Main.Group)),
-        IRON_KNIFE(new Knife(Main.Group, false)),
+        LUBE_ITEM(new BlockItem(Blocks.LUBE.block, Main._64Settings)),
+        SCYTHE(new Scythe(Main._1Settings)),
+        IRON_KNIFE(new Knife(Main._1Settings, false)),
         BROKEN_IRON_KNIFE(new Knife(new Item.Settings(), true)),
-        BARLEY_SEED(new BlockItem(Blocks.BARLEY.block, Main.Group)),
+        BARLEY_SEED(new BlockItem(Blocks.BARLEY.block, Main._64Settings)),
         WHEATSTICK(basicItem()),
         TOMATO_SEED(basicItem()),
         TOMATO_ITEM(basicItem()),
@@ -52,8 +52,8 @@ public class Stuff {
         PEPPER_ITEM(basicItem()),
         CUCUMBER_SEED(basicItem()),
         CUCUMBER_ITEM(basicItem()),
-        COUNTERTOP_ITEM(new BlockItem(Blocks.COUNTERTOP.block, Main.Group)),
-        STAKE_ITEM(new BlockItem(Blocks.STAKE.block, Main.Group));
+        COUNTERTOP_ITEM(new BlockItem(Blocks.COUNTERTOP.block, Main._64Settings)),
+        STAKE_ITEM(new BlockItem(Blocks.STAKE.block, Main._16Settings));
         private Item item;
         private Items(Item item) {
             this.item = item;
@@ -75,7 +75,7 @@ public class Stuff {
     }
     private static boolean added = false;
     private static Item basicItem() {
-        return new Item(Main.Group);
+        return new Item(Main._64Settings);
     }
     private static BlockEntityType<?> blockEntity(Supplier<? extends BlockEntity> supplier, Block block) {
         return BlockEntityType.Builder.create(supplier, block).build(null);

@@ -26,7 +26,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.mod.Stuff;
 import net.mod.blockentities.StakeEntity;
-import net.mod.utility.StakeCompatible;
 import net.mod.utility.StakeCompatibleType;
 
 public class Stake extends CropBlock implements BlockEntityProvider {
@@ -46,8 +45,7 @@ public class Stake extends CropBlock implements BlockEntityProvider {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
-        if (entity.getAge() < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9
-                && random.nextInt((int) (25.0F / getAvailableMoisture(this, world, pos)) + 1) == 0) {
+        if (entity.getAge() < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9 && random.nextInt((int) (25.0F / getAvailableMoisture(this, world, pos)) + 1) == 0) {
             entity.setAge(entity.getAge() + 1);
         }
     }
@@ -61,8 +59,7 @@ public class Stake extends CropBlock implements BlockEntityProvider {
         return Stuff.Items.STAKE_ITEM.asItem();
     }
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-            BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         StakeEntity entity = (StakeEntity) world.getBlockEntity(pos);
         if (player.getMainHandStack().isEmpty()) {
             if (entity.hasPlant() && entity.isMature()) {
@@ -70,13 +67,14 @@ public class Stake extends CropBlock implements BlockEntityProvider {
                 if (entity.use()) {
                     world.breakBlock(pos, false, player);
                 }
-                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Stuff.Items.BROKEN_IRON_KNIFE.asItem()));
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(entity.getLoot()));
                 return ActionResult.SUCCESS;
             }
             return ActionResult.PASS;
         } else {
-            if (player.getMainHandStack().getItem().equals(Stuff.Items.TOMATO_SEED.asItem()) && !entity.hasPlant()) {
-                entity.setPlant((StakeCompatible) Stuff.Blocks.TOMATO_PLANT.asBlock(), StakeCompatibleType.TOMATO);
+            StakeCompatibleType type;
+            if (!entity.hasPlant() && (type = StakeCompatibleType.getTypeOfSeed(player.getMainHandStack().getItem())) != null) {
+                entity.setPlant(type);
                 if(!player.isCreative()) {
                     player.getMainHandStack().decrement(1);
                 }

@@ -1,6 +1,6 @@
 {
     "parent" : "block/cross",
     "textures": {
-        "cross" : "mod:block/tomato_6"
+        "cross" : "mod:block/pepper_7"
     }
 }

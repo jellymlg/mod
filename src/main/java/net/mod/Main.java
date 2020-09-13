@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.MessageType;
@@ -17,10 +18,13 @@ import net.mod.items.Imrek;
 
 public class Main implements ModInitializer {
 	public static Item IMREK = new Item(new Item.Settings());
-	public static final Item.Settings Group = new Item.Settings().group(FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build());
+	public static final ItemGroup Group = FabricItemGroupBuilder.create(ID("items")).icon(() -> new ItemStack(IMREK)).build();
+	public static final Item.Settings _1Settings = new Item.Settings().group(Group).maxCount(1);
+	public static final Item.Settings _16Settings = new Item.Settings().group(Group).maxCount(16);
+	public static final Item.Settings _64Settings = new Item.Settings().group(Group).maxCount(64);
 	@Override
 	public void onInitialize() {
-		IMREK = new Imrek(Group);
+		IMREK = new Imrek(_1Settings);
 		Registry.register(Registry.ITEM, ID("imrek"), IMREK);
 		Stuff.addAll();
 		Countertop.addRecipe(Stuff.Items.IRON_KNIFE.asItem(), Items.PUMPKIN, new ItemStack[] {new ItemStack(Items.CARVED_PUMPKIN, 1), new ItemStack(Items.PUMPKIN_SEEDS, 3)});
