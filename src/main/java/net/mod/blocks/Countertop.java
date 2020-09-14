@@ -85,9 +85,9 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
     }
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        CountertopEntity block = (CountertopEntity) world.getWorld().getBlockEntity(pos);
+        CountertopEntity block = (CountertopEntity) world.getBlockEntity(pos);
         if(!block.isEmpty()) {
-            ItemScatterer.spawn(world.getWorld(), pos, block.getItems());
+            ItemScatterer.spawn(world, pos, block.getItems());
         }
         super.onBreak(world, pos, state, player);
     }
