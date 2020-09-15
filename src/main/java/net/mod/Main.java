@@ -2,16 +2,11 @@ package net.mod;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.MessageType;
-import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 import net.mod.blocks.Countertop;
 import net.mod.items.Imrek;
@@ -32,9 +27,6 @@ public class Main implements ModInitializer {
 	}
 	public static Identifier ID(String name) {
 		return new Identifier("mod", name);
-	}
-	public static void send(String msg) {
-		MinecraftClient.getInstance().getServer().getPlayerManager().sendToAll(new GameMessageS2CPacket(new LiteralText(msg), MessageType.CHAT, MathHelper.randomUuid()));
 	}
 	/*public static Block getBlockFromHit(World world, HitResult hit) {
 		if(hit.getType() == HitResult.Type.BLOCK) {

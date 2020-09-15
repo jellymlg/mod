@@ -10,7 +10,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.mod.Main;
 import net.mod.Stuff;
 import net.mod.blockentities.CountertopEntity;
 import net.mod.utility.CustomToolMaterial;
@@ -31,13 +30,11 @@ public class Knife extends SwordItem {
     }
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        BlockState block = context.getWorld().getBlockState(context.getBlockPos());
-        if(block.isOf(Stuff.Blocks.COUNTERTOP.asBlock()) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
-            CountertopEntity countertop = (CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos());
-            Main.send(countertop.getItems().toString());
+        if(context.getWorld().getBlockState(context.getBlockPos()).isOf(Stuff.Blocks.COUNTERTOP.asBlock()) && !((CountertopEntity) context.getWorld().getBlockEntity(context.getBlockPos())).isEmpty()) {
             return ActionResult.SUCCESS;
+        }else {
+            return ActionResult.PASS;
         }
-        return ActionResult.PASS;
     }
     private void tryBreaking(LivingEntity entity, ItemStack stack, boolean isBlock) {
         if(stack.getItem().equals(Stuff.Items.IRON_KNIFE.asItem()) && Math.random() * 100 < (isBlock ? 10.0D : 5.0D)) {

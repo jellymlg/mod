@@ -44,9 +44,7 @@ public class CountertopEntity extends BlockEntity implements CustomInventory, Si
     }
     @Override
     public CompoundTag toInitialChunkDataTag() {
-        CompoundTag tag = Inventories.toTag(super.toInitialChunkDataTag(), item);
-        tag.putInt(CLICK_PROGRESS, clicks);
-        return tag;
+        return toTag(new CompoundTag());
     }
     public Item getItem() {
         return item.get(0).getItem();

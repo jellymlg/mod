@@ -93,14 +93,14 @@ public class Countertop extends HorizontalFacingBlock implements BlockEntityProv
     }
     private static int recipeExists(Item tool, Item in) {
         for(int i = 0; i < RECIPES.size(); i++) {
-            if(RECIPES.get(i).tool == tool && RECIPES.get(i).in == in) {
+            if(RECIPES.get(i).tool == tool && RECIPES.get(i).in == in) {System.out.println("" + i);
                 return i;
             }
-        }
+        }System.out.println("-1");
         return -1;
     }
     public static void addRecipe(Item tool, Item in, ItemStack[] out) {
-        if(recipeExists(tool, in) >= 0) {
+        if(recipeExists(tool, in) == -1) {
             RECIPES.add(new Recipe(tool, in, out));
         }
     }
